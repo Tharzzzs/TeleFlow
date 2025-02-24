@@ -9,7 +9,9 @@
         android:layout_height="wrap_content"
         android:textSize="40sp"
         android:textStyle="bold"
+        android:background="#ac79e2"
         android:textColor="#45246b"
+        android:paddingLeft="10dp"
         android:text="TeleFlow"/>
 
     <LinearLayout
