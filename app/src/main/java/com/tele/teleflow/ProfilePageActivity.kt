@@ -8,8 +8,10 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+
 
 class ProfilePageActivity : Activity() {
 
@@ -21,6 +23,8 @@ class ProfilePageActivity : Activity() {
     private lateinit var saveButton: TextView
     private lateinit var backButton: TextView
     private lateinit var sharedPreferences: SharedPreferences
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +38,7 @@ class ProfilePageActivity : Activity() {
         saveButton = findViewById(R.id.save_button)
         backButton = findViewById(R.id.back_button)
 
+
         sharedPreferences = getSharedPreferences("User Profile", Context.MODE_PRIVATE)
 
         loadProfileData()
@@ -45,6 +50,8 @@ class ProfilePageActivity : Activity() {
         backButton.setOnClickListener {
             finish()
         }
+
+
     }
 
     private fun loadProfileData() {

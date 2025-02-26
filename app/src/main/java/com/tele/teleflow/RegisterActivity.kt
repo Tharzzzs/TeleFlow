@@ -28,7 +28,7 @@ class RegisterActivity : Activity() {
         editTextEmail = findViewById(R.id.edittext_email)
         editTextPassword = findViewById(R.id.edittext_password)
         editTextConfirmPassword = findViewById(R.id.edittext_confirm_password)
-        buttonRegister = findViewById(R.id.button_login) // Button ID matches XML
+        buttonRegister = findViewById(R.id.button_login)
         backButton = findViewById(R.id.back_button)
         buttonRegister.isEnabled = false
 

@@ -19,6 +19,7 @@ class ProfileActivity : Activity() {
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var logoutButton: TextView
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
@@ -28,18 +29,33 @@ class ProfileActivity : Activity() {
         userEmailTextView = findViewById(R.id.user_email)
         logoutButton = findViewById(R.id.logout_button)
 
+
         sharedPreferences = getSharedPreferences("User Profile", Context.MODE_PRIVATE)
 
         loadProfileData()
 
         logoutButton.setOnClickListener {
-            showLogoutConfirmationDialog()
+            AlertDialog.Builder(this)
+                .setTitle("Logout")
+                .setMessage("Are you sure you want to log out?")
+                .setPositiveButton("Yes") { _, _ ->
+                    val intent = Intent(this, LoginActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                    Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton("No", null)
+                .show()
         }
 
         val editProfile = findViewById<TextView>(R.id.edit_profile)
         editProfile.setOnClickListener {
             startActivity(Intent(this, ProfilePageActivity::class.java))
         }
+
+
+
+
     }
 
     override fun onResume() {
@@ -55,17 +71,5 @@ class ProfileActivity : Activity() {
         userEmailTextView.text = savedUserEmail
     }
 
-    private fun showLogoutConfirmationDialog() {
-        AlertDialog.Builder(this)
-            .setTitle("Logout")
-            .setMessage("Are you sure you want to log out?")
-            .setPositiveButton("Yes") { _, _ ->
-                val intent = Intent(this, LoginActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
-                Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
-            }
-            .setNegativeButton("No", null)
-            .show()
-    }
+
 }
